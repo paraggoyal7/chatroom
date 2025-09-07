@@ -1,8 +1,10 @@
+package utils;
+
 import java.net.InetAddress;
 
-class Address {
-  InetAddress address;
-  int port;
+public class Address {
+  public InetAddress address;
+  public int port;
 
   public Address(InetAddress address, int port) {
     this.address = address;

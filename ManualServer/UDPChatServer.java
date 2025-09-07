@@ -1,9 +1,12 @@
+package ManualServer;
+
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import utils.Address;
 
 public class UDPChatServer {
   static Map<String, Address> clients = new HashMap<>(); // Map to store client addresses and ports>

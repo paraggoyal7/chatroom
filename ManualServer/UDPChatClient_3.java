@@ -1,14 +1,18 @@
+package ManualServer;
+
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.util.Scanner;
 
-public class UDPChatClient_2 {
+import utils.UdpUtil;
+
+public class UDPChatClient_3 {
   public static void main(String[] args) throws Exception {
-    DatagramSocket socket = new DatagramSocket(8001); // client listens on its own port
+    DatagramSocket socket = new DatagramSocket(8002); // client listens on its own port
     InetAddress serverAddress = InetAddress.getByName("127.0.0.1");
     int serverPort = 9999;
-    String username = "Client2";
+    String username = "Client3";
 
     UdpUtil.connectToServer(socket, username, serverAddress, serverPort);
     System.out.println("Connected to UDP Chat Server at 127.0.0.1:9999");
