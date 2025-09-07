@@ -5,16 +5,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-class Address {
-  InetAddress address;
-  int port;
-
-  public Address(InetAddress address, int port) {
-    this.address = address;
-    this.port = port;
-  }
-}
-
 public class UDPChatServer {
   static Map<String, Address> clients = new HashMap<>(); // Map to store client addresses and ports>
 
