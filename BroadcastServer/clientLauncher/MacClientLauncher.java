@@ -11,7 +11,7 @@ public class MacClientLauncher implements ClientLauncher {
       String classpath = System.getProperty("java.class.path"); // Current classpath
       String className = "BroadcastServer.Client";                  // Your main class
       String cmd = "osascript -e 'tell application \"Terminal\" to do script \"" +
-          javaBin + " -cp " + classpath + " BroadcastServer.Client " + username +" " + serverAddress.getHostAddress() +" " + serverPort+"\"'";
+          javaBin + " -cp " + classpath + " BroadcastServer.Client " + username +" " + serverAddress.getHostAddress() +" " + serverPort + "; exit\"'";
       ProcessBuilder builder = new ProcessBuilder("bash", "-c", cmd);
       //builder.start();
 
