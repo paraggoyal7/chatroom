@@ -10,7 +10,7 @@ public class Listener {
       DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
       socket.receive(packet);
       String msg = new String(packet.getData(), 0, packet.getLength());
-      System.out.println("Found: " + msg + " from " + packet.getAddress());
+      System.out.println("Found: " + msg + " from " + packet.getAddress() + ":" + packet.getPort());
     }
 
   }
