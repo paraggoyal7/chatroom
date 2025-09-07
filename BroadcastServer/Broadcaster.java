@@ -14,7 +14,6 @@ public class Broadcaster {
 
   public static void main(String[] args) throws Exception {
     DatagramSocket socket = new DatagramSocket();
-    System.out.println("UDP Chat Server started on port 9999...");
 
     Runtime.getRuntime().addShutdownHook(new Thread(() -> {
       try {
@@ -24,6 +23,12 @@ public class Broadcaster {
         // ignore if socket already closed
       }
     }));
+
+    Scanner scanner = new Scanner(System.in);
+    System.out.println("Enter Chat room name: ");
+    String chatRoom = scanner.nextLine();
+
+    System.out.println("UDP Chat Server started on port 9999...");
 
 
     // Receiver Thread (listens for messages from client)
@@ -70,7 +75,7 @@ public class Broadcaster {
         InetAddress broadcast = InetAddress.getByName("255.255.255.255");
         int discoveryPort = 8888;
         while (true) {
-          String announce = "CHATROOM:MyRoom,IP:192.168.1.25,PORT:9999";
+          String announce = "CHATROOM:"+chatRoom;
           byte[] data = announce.getBytes();
           DatagramPacket packet = new DatagramPacket(data, data.length, broadcast, discoveryPort);
           socket.send(packet);

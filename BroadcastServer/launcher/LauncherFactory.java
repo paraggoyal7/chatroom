@@ -1,8 +1,8 @@
-package BroadcastServer.clientLauncher;
+package BroadcastServer.launcher;
 
-public class ClientLauncherFactory {
+public class LauncherFactory {
 
-  public static ClientLauncher getClientLauncher() {
+  public static Launcher getLauncher() {
     String osName = System.getProperty("os.name").toLowerCase();
 
     if (osName.contains("win")) {
