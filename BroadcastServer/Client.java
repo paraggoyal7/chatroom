@@ -1,4 +1,4 @@
-package ManualServer;
+package BroadcastServer;
 
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -9,14 +9,22 @@ import utils.UdpUtil;
 
 public class Client {
 
-  String username;
-  InetAddress serverAddress;
-  int serverPort;
+  static String username;
+  static InetAddress serverAddress;
+  static int serverPort;
 
-  public Client(String username, InetAddress serverAddress, int serverPort) {
-    this.username = username;
-    this.serverAddress = serverAddress;
-    this.serverPort = serverPort;
+  //public Client(String username, InetAddress serverAddress, int serverPort) {
+  //  this.username = username;
+  //  this.serverAddress = serverAddress;
+  //  this.serverPort = serverPort;
+  //}
+
+  public static void main(String[] args) throws Exception {
+    username = args[0];
+    serverAddress = InetAddress.getByName(args[1]);
+    serverPort = Integer.parseInt(args[2]);
+    Client client = new Client();
+    client.startClient(new Scanner(System.in));
   }
 
   public void startClient(Scanner scanner) throws Exception {
@@ -54,4 +62,6 @@ public class Client {
     receiver.start();
     sender.start();
   }
+
+  public static void comp(){}
 }

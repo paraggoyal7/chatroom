@@ -66,7 +66,7 @@ public class Broadcaster {
 
     // Sender Thread (sends messages to client)
     Thread sender = new Thread(() -> {
-      try (Scanner scanner = new Scanner(System.in)) {
+      try {
         InetAddress broadcast = InetAddress.getByName("255.255.255.255");
         int discoveryPort = 8888;
         while (true) {
