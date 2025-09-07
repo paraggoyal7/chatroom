@@ -11,7 +11,7 @@ public class WindowsClientLauncher implements ClientLauncher {
     String classpath = System.getProperty("java.class.path"); // Current classpath
     String className = "BroadcastServer.Client";                  // Your main class
     ProcessBuilder builder = new ProcessBuilder(
-        "cmd", "/c", "start", "java", "-cp", classpath, "BroadcastServer.Client", "username", "serverIP", "serverPort"
+        "cmd", "/c", "start", "java", "-cp", classpath, "BroadcastServer.Client", username, serverAddress.getHostAddress(), String.valueOf(serverPort)
     );
     try {
       Process process = builder.start();
