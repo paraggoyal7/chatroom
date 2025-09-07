@@ -50,10 +50,6 @@ public class UdpUtil {
 
   public static void sendThread(DatagramSocket socket, String username, InetAddress serverAddress, int serverPort, Scanner scanner) throws Exception {
     String msg = scanner.nextLine();
-    //if (msg.equalsIgnoreCase("/quit")) {
-    //  utils.UdpUtil.disconnectFromServer(socket, username, serverAddress, serverPort);
-    //  socket.close();
-    //}
     UdpUtil.sendMessage(socket, username, serverAddress, serverPort, msg);
   }
 }

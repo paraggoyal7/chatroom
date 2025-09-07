@@ -19,7 +19,7 @@ public class Client {
     this.serverPort = serverPort;
   }
 
-  public void startClient() throws Exception {
+  public void startClient(Scanner scanner) throws Exception {
     DatagramSocket socket = new DatagramSocket(); // client listens on its own port
 
     UdpUtil.connectToServer(socket, username, serverAddress, serverPort);
@@ -42,7 +42,7 @@ public class Client {
 
     // Sender Thread (sends messages to server)
     Thread sender = new Thread(() -> {
-      try (Scanner scanner = new Scanner(System.in)) {
+      try (scanner) {
         while (!socket.isClosed()) {
           UdpUtil.sendThread(socket, username, serverAddress, serverPort, scanner);
         }

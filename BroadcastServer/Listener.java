@@ -18,15 +18,14 @@ public class Listener {
     DatagramSocket socket = new DatagramSocket(8888);
     byte[] buffer = new byte[1024];
     System.out.println("Listening for chat rooms...");
+    Scanner scanner = new Scanner(System.in);
     while (true) {
       DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
       socket.receive(packet);
       String msg = new String(packet.getData(), 0, packet.getLength());
       System.out.println("Found: " + msg + " from " + packet.getAddress() + ":" + packet.getPort());
-      System.out.print("Enter Username: ");
-      Scanner scanner = new Scanner(System.in);
+      System.out.println("Enter Username: ");
       username = scanner.nextLine();
-      scanner.close();
       serverAddress = packet.getAddress();
       serverPort = packet.getPort();
       break;
@@ -34,7 +33,7 @@ public class Listener {
     socket.close();
 
     Client client = new Client(username, serverAddress, serverPort);
-    client.startClient();
+    client.startClient(scanner);
 
   }
 }
