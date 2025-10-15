@@ -1,5 +1,6 @@
 package utils;
 
+import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
@@ -32,13 +33,19 @@ public class UdpUtil {
     }));
   }
 
-  public static void disconnectFromServer(DatagramSocket socket, String username, InetAddress serverAddress, int serverPort) throws Exception {
-    String disconnectMsg = username + "###disconnect";
-    byte[] data = disconnectMsg.getBytes();
-    DatagramPacket packet = new DatagramPacket(data, data.length, serverAddress, serverPort);
-    socket.send(packet);
-    socket.close();
-    System.out.println("You have disconnected gracefully.");
+  public static void disconnectFromServer(DatagramSocket socket, String username, InetAddress serverAddress, int serverPort){
+    if(socket.isClosed()) return;
+    try {
+      String disconnectMsg = username + "###disconnect";
+      byte[] data = disconnectMsg.getBytes();
+      DatagramPacket packet = new DatagramPacket(data, data.length, serverAddress, serverPort);
+      socket.send(packet);
+      socket.close();
+      System.out.println("You have disconnected gracefully.");
+    }
+    catch (IOException e) {
+      throw new RuntimeException(e);
+    }
   }
 
   public static void sendMessage(DatagramSocket socket, String username, InetAddress serverAddress, int serverPort, String message) throws Exception {
@@ -50,6 +57,7 @@ public class UdpUtil {
 
   public static void sendThread(DatagramSocket socket, String username, InetAddress serverAddress, int serverPort, Scanner scanner) throws Exception {
     String msg = scanner.nextLine();
+    System.out.println("You: " + msg);
     UdpUtil.sendMessage(socket, username, serverAddress, serverPort, msg);
   }
 }

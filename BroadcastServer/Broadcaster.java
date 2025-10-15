@@ -47,11 +47,9 @@ public class Broadcaster {
           System.out.println("\n"+ username + ": " + messageText);
           if(checkConnectMsg(messageText)) {
             addClient(username, clientAddress, clientPort);
-            continue;
           }
           else if (checkDisconnectMsg(messageText)) {
             clients.remove(username);
-            continue;
           }
           for (Map.Entry<String, Address> entry : clients.entrySet()) {
             String clientUsername = entry.getKey();
